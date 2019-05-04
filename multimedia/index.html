@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>p5.js example</title>
+    <link rel="stylesheet" href="./lib/css/bootstarp.css" />
+    <link rel="stylesheet" href="./svgIcon.css" />
+
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <ul class="main-header nav justify-content-center nav-pills">
+      <li class="nav-item">
+        <span class="nav-link active" data-type="tool">Tools</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" data-type="emoji">Emoji</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" data-type="text">Text</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link " data-type="canvas">Canvas</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link " data-type="filter">filter</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link " data-type="image">image</span>
+      </li>
+
+      <li class="nav-item">
+        <span class="nav-link " data-type="color">color</span>
+      </li>
+    </ul>
+
+    <div class="d-flex page align-items-stretch">
+      <div class="flex-grow-1 d-flex flex-column ">
+        <div class="p-2  sub-header ">
+          <div class="history-btn">
+            <button class="btn btn-primary front">front</button>
+            <button class="btn btn-primary back">back</button>
+          </div>
+          <button class="btn btn-primary save-btn">save</button>
+          <label for="image-input">New Image</label>
+          <input type="file" id="image-input" class="hide" accept="image/*" />
+        </div>
+        <div class="p-2 canvas-container flex-grow-1 "></div>
+      </div>
+
+      <div class="p-3 red  settings ">
+        <div class="tool hide">
+          <h3 class="tool-header">pencil</h3>
+          <div class="image-container">
+            <img
+              src="./assate/pencil.png"
+              class="active"
+              alt=""
+              data-type="pencil"
+            />
+            <img src="./assate/eraser.png" data-type="eraser" alt="" class="" />
+            <img src="./assate/pail.png" class="" data-type="pail" alt="" />
+          </div>
+          <div class="tool-width">
+            <div class="value">Thickness : 5px</div>
+
+            <input type="range" class="slider" min="5" max="100" value="5" />
+          </div>
+          <div class="tool-opacity">
+            <div class="value">Opacity : 100%</div>
+            <input type="range" class="slider" min="1" max="100" value="100" />
+          </div>
+          <div class="tool-color d-flex">
+            <button
+              type="button"
+              class=" colorPicker-btn"
+              data-toggle="modal"
+              data-target=".bd-example-modal-lg"
+            ></button>
+            <div class="marker">
+              <img src="./assate/marker.png" width="30" height="30" />
+            </div>
+
+            <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Change color</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body flex">
+                    <div class="colorPicker"></div>
+                    <div class="color-data">
+                      <div
+                        style="height:80px;border-radius: 4px"
+                        class="color-show"
+                      ></div>
+                      <input
+                        disabled
+                        type="text"
+                        class="form-control R"
+                        value="R"
+                      />
+                      <input
+                        disabled
+                        type="text"
+                        class="form-control G"
+                        value="G"
+                      />
+                      <input
+                        disabled
+                        type="text"
+                        class="form-control B"
+                        value="B"
+                      />
+                      <input
+                        disabled
+                        type="text"
+                        class="form-control Hex"
+                        value="hexh"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-color-choice"></div>
+        </div>
+
+        <div class="emoji hide">
+          <div class="emoji-header">Emoji</div>
+          <div class="main-emoji"></div>
+          <div class="emoji-container"></div>
+
+        </div>
+        <div class="text hide">text</div>
+        <div class="canvas hide">
+          <button class="btn btn-primary" id="X_MIRROR">x</button>
+          <button class="btn btn-primary" id="Y_MIRROR">y</button>
+          <button class="btn btn-primary" id="LEFT_ROTATE">left</button>
+          <button class="btn btn-primary" id="RIGHT_ROTATE">right</button>
+        </div>
+
+        <div class="filter hide">
+          <button class="btn btn-primary" id="GRAY_FILTER">gray</button>
+          <button class="btn btn-primary" id="THRESHOLD_FILTER">
+            threshold
+          </button>
+          <button class="btn btn-primary" id="INVERT_FILTER">invert</button>
+        </div>
+        <div class="image hide">image</div>
+        <div class="color hide">dddd</div>
+      </div>
+    </div>
+
+    <script src="./lib/js/jquery.js"></script>
+    <script src="./lib/js/popper.js"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+
+    <script src="./lib/js/color.js"></script>
+    <script src="./lib/js/p5.min.js"></script>
+    <script src="./lib/js/p5.dom.min.js"></script>
+    <script src="./lib/js/_.js"></script>
+    <script src="./src/js/emojiList.js"></script>
+    <script src="./src/js/applicationVariables.js"></script>
+    <script src="./src/js/help.js"></script>
+    <script src="./src/js/paint.js"></script>
+    <script src="./src/js/canvasEvent.js"></script>
+    <script src="./src/js/fliter.js"></script>
+    <script src="./src/js/canvas.js"></script>
+    <script src="./src/js/main.js"></script>
+    <script src="./src/js/sketch.js"></script>
+  </body>
+</html>
