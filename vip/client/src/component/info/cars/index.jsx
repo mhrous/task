@@ -1,8 +1,8 @@
 import React from 'react';
+import { PageHeader } from 'antd';
 
-import AllCar from './allCars';
-import Car from './car';
+const Car = () => (
+  <PageHeader onBack={() => null} title="Title" subTitle="This is a subtitle" />
+);
 
-const Info = ({ id }) => (id ? <Car /> : <AllCar />);
-
-export default Info;
+export default Car;

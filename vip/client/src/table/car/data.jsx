@@ -1,11 +1,10 @@
 import { observable, action } from 'mobx';
 import { message } from 'antd';
-import { getJSON, postJSON } from '../../../lib';
-import { API_URL } from '../../../config';
+import { getJSON, postJSON } from '../../lib';
+import { API_URL } from '../../config';
 
 class Data {
   @observable cars = [];
-  @observable selectedCar = {};
   //modal
   @observable openModal = false;
   @observable loadingModal = false;
@@ -120,7 +119,7 @@ class Data {
     } catch (e) {}
   }
 
-  initAll() {
+  init() {
     this.getCars();
   }
 }

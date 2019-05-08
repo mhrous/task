@@ -3,7 +3,7 @@ import { Table, Button, Icon } from 'antd';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 
-import Notes from '../../Note';
+import { Note } from '../../component';
 import data from './data';
 
 const columns = [
@@ -37,7 +37,7 @@ const CarTable = () => (
     dataSource={data.cars}
     pagination={false}
     size="middle"
-    expandedRowRender={record => <Notes notes={record.notes} />}
+    expandedRowRender={record => <Note notes={record.notes} />}
     onChange={(pagination, filters, sorter) => {}}
     rowKey="_id"
     footer={() => (

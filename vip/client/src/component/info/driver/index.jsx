@@ -1,5 +1,17 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 
-const Info = ({ id }) => <div>hi{id}</div>;
+import data from './data';
+import Header from './header';
+
+const Info = ({ id }) => {
+  useEffect(() => {
+    data.init({ id });
+  });
+  return (
+    <Fragment>
+      <Header />
+    </Fragment>
+  );
+};
 
 export default Info;

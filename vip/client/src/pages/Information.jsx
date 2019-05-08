@@ -1,9 +1,8 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
-import { Car, PartnerPage, DriverPage } from '../component';
+import { CarPage, PartnerPage, DriverPage } from '../component';
 
-import { Status, Travels, Partners, Drivers } from '../table';
+import { Status, Travels, Partners, Drivers, Cars } from '../table';
 
 const Information = ({ match }) => {
   const { id, TableName } = match.params;
@@ -13,7 +12,7 @@ const Information = ({ match }) => {
       Page = () => (id ? <PartnerPage id={id} /> : <Partners />);
       break;
     case 'cars':
-      Page = () => <Car id={id} />;
+      Page = () => (id ? <CarPage id={id} /> : <Cars />);
       break;
     case 'driver':
       Page = () => (id ? <DriverPage id={id} /> : <Drivers />);

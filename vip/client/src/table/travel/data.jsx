@@ -132,8 +132,13 @@ class Data {
         this.travels = [...this.travels, data];
         message.success(`تم اضافة السفرة بنجاح`);
       } else {
-        const { data } = await putJSON(`${API_URL}/travel/${this.idForUpdata}`, obj);
-        let updataIndex = this.travels.findIndex(e => e._id === this.idForUpdata);
+        const { data } = await putJSON(
+          `${API_URL}/travel/${this.idForUpdata}`,
+          obj
+        );
+        let updataIndex = this.travels.findIndex(
+          e => e._id === this.idForUpdata
+        );
         this.travels = [
           ...this.travels.slice(0, updataIndex),
           data,
@@ -216,11 +221,8 @@ class Data {
     } catch (e) {}
   }
 
-  initAll({ driverId, month }) {
-    this.getTravel({
-      driverId,
-      month
-    });
+  init() {
+    this.getTravel();
     this.getDriverAndCarName();
     this.getPartnerName();
   }

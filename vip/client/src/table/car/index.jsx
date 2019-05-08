@@ -3,9 +3,9 @@ import AddCarModal from './addCarModal';
 import CarTable from './carTable';
 import data from './data';
 
-const All = () => {
+const Cars = () => {
   useEffect(() => {
-    data.initAll();
+    data.init();
   });
 
   return (
@@ -16,4 +16,4 @@ const All = () => {
   );
 };
 
-export default All;
+export default Cars;
