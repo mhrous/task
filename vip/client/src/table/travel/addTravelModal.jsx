@@ -11,7 +11,8 @@ const AddTravelModel = () => (
     onOk={() => data.okModal()}
     confirmLoading={data.loadingModal}
     onCancel={() => data.closeModal()}
-    bodyStyle={{ maxHeight: '350px', overflowY: 'auto' }}
+    style={{ top: 30 }}
+    bodyStyle={{ maxHeight: '440px', overflowY: 'auto' }}
   >
     <TravelForm />
   </Modal>

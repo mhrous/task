@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Table, Button, Icon } from 'antd';
 import { observer } from 'mobx-react';
 import moment from 'moment';
 
-import Notes from '../../component/Note';
+import { Notes, Exponess } from '../../component';
 import data from './data';
 
 const columns = [
@@ -40,31 +40,59 @@ const columns = [
       </div>
     )
   },
-  {
-    title: 'النوع',
-    dataIndex: 'type',
-    key: 'type',
-    render: (type, record) => (
-      <div>
-        <div>{type ? 'دين' : 'مقبوضة'}</div>
-        <div>{type && `${record.partner.name}`}</div>
-      </div>
-    )
-  },
+
   {
     title: 'المصروف',
     dataIndex: 'expenses',
-    key: 'expenses'
+    key: 'expenses',
+    render: record => <Exponess exponess={record} />
   },
   {
-    title: 'القيمة',
-    dataIndex: 'total',
-    key: 'total'
+    title: 'ذهاب',
+    key: 'totalTo',
+    render: record => (
+      <Fragment>
+        <div style={{ textAlign: 'center' }}>
+          {record.totalTo ? record.totalTo : 'فاضي'}
+        </div>
+        {record.partnerTo && (
+          <div style={{ textAlign: 'center' }}>( {record.partnerTo.name} )</div>
+        )}
+      </Fragment>
+    )
+  },
+  {
+    title: 'اياب',
+    key: 'totalBack',
+    render: record => (
+      <Fragment>
+        <div style={{ textAlign: 'center' }}>
+          {record.totalBack ? record.totalBack : 'فاضي'}
+        </div>
+        {record.partnerBack && (
+          <div style={{ textAlign: 'center' }}>
+            ( {record.partnerBack.name} )
+          </div>
+        )}
+      </Fragment>
+    )
+  },
+  ,
+  {
+    title: 'صافي',
+    key: '_id',
+    render: record => (
+      <Fragment>
+        {record.totalBack +
+          record.totalTo -
+          Object.entries(record.expenses).reduce((a, b) => a + b[1], 0)}
+      </Fragment>
+    )
   },
   {
     key: 'action',
     render: record => (
-      <div>
+      <Fragment>
         <Button
           size="small"
           type="primary"
@@ -75,10 +103,15 @@ const columns = [
           <Icon type="form" />
         </Button>
 
-        <Button size="small" type="danger" ghost onClick={() => data.confirmTravel(record._id)}>
+        <Button
+          size="small"
+          type="danger"
+          ghost
+          onClick={() => data.confirmTravel(record._id)}
+        >
           <Icon type="delete" />
         </Button>
-      </div>
+      </Fragment>
     )
   }
 ];
@@ -91,6 +124,7 @@ const TravelTable = () => (
     size="middle"
     expandedRowRender={record => <Notes notes={record.notes} />}
     rowKey="_id"
+    bordered
     footer={() => (
       <Button
         type="primary"

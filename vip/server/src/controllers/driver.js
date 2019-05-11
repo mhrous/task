@@ -108,7 +108,6 @@ export const getDriverWithCar = async (req, res) => {
 
 export const getDriver = async (req, res) => {
   try {
-    console.log(5);
     const {
       id
     } = req.params

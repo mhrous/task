@@ -5,6 +5,7 @@ import { API_URL } from '../../config';
 const confirm = Modal.confirm;
 
 class Data {
+  idDriver = null;
   @observable travels = [];
   @observable selectedTreavel = {};
   //modal
@@ -21,21 +22,28 @@ class Data {
   @observable carName = '';
   @observable carNameError = '';
 
-  @observable partnerName = '';
-  @observable partnerNameError = '';
-  @observable total = '';
-  @observable totalError = '';
-  @observable expenses = '';
+  @observable partnerToName = '';
+  @observable partnerToNameError = '';
+  @observable typeTo = false;
+  @observable partnerBackName = '';
+  @observable partnerBackNameError = '';
+  @observable typeBack = false;
+
+  @observable totalTo = '';
+  @observable totalToError = '';
+  @observable totalBack = '';
+  @observable totalBackError = '';
   @observable expensesError = '';
   @observable from = '';
   @observable to = '';
   @observable date = new Date();
-  @observable type = false;
   @observable clientName = '';
   @observable clientPhone = '';
   @observable notes = [''];
+  @observable expenses = [['', '', '']];
+
   //
-  @observable allPartnerNameS = [];
+  @observable allPartnerNames = [];
   @observable driverCar = [];
   fromToOption = ['دمشق', 'بيروت', 'مطار بيروت', 'مطار دمشق'];
   @action
@@ -44,19 +52,24 @@ class Data {
     this.driverName = '';
     this.carName = '';
     this.carNameError = '';
-    this.partnerName = '';
-    this.total = '';
-    this.totalError = '';
-    this.expenses = '';
+    this.partnerToName = '';
+    this.partnerToNameError = '';
+    this.typeTo = false;
+    this.partnerBackName = '';
+    this.partnerBackNameError = '';
+    this.typeBack = false;
+    this.totalTo = '';
+    this.totalToError = '';
+    this.totalBack = '';
+    this.totalBackError = '';
     this.expensesError = '';
     this.from = '';
     this.to = '';
-    this.type = false;
     this.clientName = '';
     this.clientPhone = '';
     this.notes = [''];
     this.date = new Date();
-    this.partnerNameError = '';
+    this.expenses = [['', '', '']];
   }
 
   @action
@@ -69,13 +82,17 @@ class Data {
   @action openModalForUpdata(record) {
     this.idForUpdata = record._id;
     this.openModalUpdata = true;
-    this.partnerName = record.partner ? record.partner._id : '';
-    this.total = record.total;
-    this.expenses = record.expenses;
+    this.partnerToName = record.partnerTo ? record.partnerTo._id : '';
+    this.partnerBackName = record.partnerBack ? record.partnerBack._id : '';
+    this.expenses = Object.entries(record.expenses);
+    this.totalTo = record.totalTo;
+    this.totalBack = record.totalBack;
     this.from = record.from;
     this.to = record.to;
     this.date = record.date;
-    this.type = record.type;
+    this.typeTo = record.partnerTo ? true : false;
+    this.typeBack = record.partnerBack ? true : false;
+
     this.clientName = record.clientName;
     this.clientPhone = record.clientPhone;
     this.notes = record.notes;
@@ -94,41 +111,68 @@ class Data {
       this.driverNameError = 'يجب عليك ادخال اسم السائق';
       error = true;
     }
-    if (this.total === '') {
-      this.totalError = 'يجب عليك ادخال قيمة السفرة';
+    if (this.totalTo === '') {
+      this.totalToError = 'يجب عليك ادخال قيمة الذهاب السفرة';
+      error = true;
+    }
+    if (this.totalBack === '') {
+      this.totalBackError = 'يجب عليك ادخال قيمة العودة السفرة';
       error = true;
     }
 
-    if (this.expenses === '') {
-      this.expensesError = 'يجب عليك ادخال مصروف  السفرة';
+    if (this.typeTo && this.partnerToName === '') {
+      this.partnerToNameError = 'يجب عليك ادخال سفرة الدين لصالح';
       error = true;
     }
-    if (this.type && this.partnerName === '') {
-      this.partnerNameError = 'يجب عليك ادخال سفرة الدين لصالح';
+    if (this.typeBack && this.partnerBackName === '') {
+      this.partnerBackNameError = 'يجب عليك ادخال سفرة الدين لصالح';
       error = true;
     }
+    const expenses = {};
+    this.expenses.forEach(e => {
+      const [key, value] = e;
+      if (key in expenses) {
+        error = true;
+        e[2] = 'هذا المصروف مضاف سابقا يرجى تغير الاسم';
+      }
+      if (key === '') {
+        error = true;
+        e[2] = 'لايمكن اضافة مصروف من دون نوع';
+      }
+      if (value === '' || !value) {
+        error = true;
+        e[2] = 'لايمكن اضافة مصروف فارغ';
+      }
+      expenses[key] = value;
+    });
+    console.log({ error });
     if (error) return;
-
+    console.log('NO EeeOR');
     const obj = {
       car: this.carName,
-      driver: this.driverName,
+      driver: this.driverName || undefined,
+
       date: this.date,
       notes: this.notes.filter(e => e),
       from: this.from || undefined,
       to: this.to || undefined,
       clientName: this.clientName || undefined,
       clientPhone: this.clientPhone || undefined,
-      type: this.type,
-      total: this.total,
-      expenses: this.expenses,
-      partner: this.partnerName || undefined
+      totalTo: this.totalTo,
+      totalBack: this.totalBack,
+      partnerTo: this.partnerToName || undefined,
+      partnerBack: this.partnerBackName || undefined,
+      expenses
     };
+    console.log(obj);
 
     this.loadingModal = true;
 
     try {
       if (!this.openModalUpdata) {
         const { data } = await postJSON(`${API_URL}/travel`, obj);
+        console.log(data);
+
         this.travels = [...this.travels, data];
         message.success(`تم اضافة السفرة بنجاح`);
       } else {
@@ -136,6 +180,7 @@ class Data {
           `${API_URL}/travel/${this.idForUpdata}`,
           obj
         );
+        console.log(data);
         let updataIndex = this.travels.findIndex(
           e => e._id === this.idForUpdata
         );
@@ -154,7 +199,8 @@ class Data {
       this.openModalUpdata = false;
     } catch (e) {
       this.expensesError = e.expenses;
-      this.totalError = e.total;
+      this.totalToError = e.totalTo;
+      this.totalBackError = e.totalBack;
       this.partnerNameError = e.partner;
       this.driverNameError = e.driver;
       this.carNameError = e.car;
@@ -198,18 +244,10 @@ class Data {
   }
 
   @action
-  async getTravel() {
-    try {
-      const res = await getJSON(`${API_URL}/travel`);
-      this.travels = res.data;
-    } catch (e) {}
-  }
-
-  @action
   async getDriverAndCarName() {
     try {
-      const res = await getJSON(`${API_URL}/partner`);
-      this.allPartnerNameS = res.data;
+      const { data } = await getJSON(`${API_URL}/partner`);
+      this.allPartnerNames = data;
     } catch (e) {}
   }
 
@@ -221,9 +259,9 @@ class Data {
     } catch (e) {}
   }
 
-  init({ travels }) {
-    travels ? (this.travels = travels) : this.getTravel();
-
+  init({ travels, idDriver }) {
+    this.travels = travels;
+    this.idDriver = idDriver || null;
     this.getDriverAndCarName();
     this.getPartnerName();
   }
@@ -256,6 +294,17 @@ class Data {
 
       return _a.getTime() - _b.getTime();
     });
+  }
+
+  @action addExpenses() {
+    // index 0 for key
+    // index 1 for value
+    // index 2 for error
+    this.expenses.push(['', '', '']);
+  }
+  @action
+  removeExpenses(index) {
+    this.expenses.splice(index, 1);
   }
 }
 

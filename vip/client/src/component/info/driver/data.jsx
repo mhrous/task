@@ -7,7 +7,7 @@ class Data {
   @observable id = null;
   @observable driver = { car: { name: '', number: '' }, name: '' };
   @observable date = moment(new Date());
-  @observable travels = [{}];
+  @observable travels = [];
 
   @action
   init({ id }) {
@@ -31,23 +31,15 @@ class Data {
         `${API_URL}/admin/travel/driver/${this.id}/${this.date.month()}`
       );
       this.travels = data;
-      console.log({
-        travels: this.travels,
-        paid: this.getPaid,
-        unpaid: this.etUnpaid
-      });
     } catch (e) {}
   }
 
   @computed
   get getUnpaid() {
-    console.log(this.travels);
-    console.log(this.travels.filter(travel => travel.type));
     return this.travels.filter(travel => travel.type) || [{}];
   }
   @computed
   get getPaid() {
-
     return this.travels.filter(travel => travel.type) || [{}];
   }
 }

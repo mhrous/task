@@ -21,15 +21,11 @@ export const getEndDate = () => {
 export const getFirstOfThisMonth = (m) => {
   let d = new Date();
   m = parseInt(m)
-
-
   return new Date(d.getFullYear(), m, 1, 0, 0, 0, 0)
 };
 export const getFirstOfNextMonth = (m) => {
   let d = new Date();
-
   m = parseInt(m)
 
   return new Date(d.getFullYear(), m + 1, 1, 0, 0, 0, 0)
-
 };

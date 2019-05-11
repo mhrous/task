@@ -52,7 +52,6 @@ const DriverForm = () => (
     </Form.Item>
 
     <Form.Item
-      label=" هواتف"
       validateStatus={data.driverPhone[0][2] ? 'error' : ''}
       help={data.driverPhone[0][2]}
     >

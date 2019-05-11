@@ -3,7 +3,7 @@ import { Table, Button, Icon } from 'antd';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 
-import { Note } from '../../component';
+import { Notes } from '../../component';
 import data from './data';
 
 const columns = [
@@ -39,7 +39,7 @@ const DriverTable = () => (
     dataSource={data.drivers}
     pagination={false}
     size="middle"
-    expandedRowRender={record => <Note notes={record.notes} />}
+    expandedRowRender={record => <Notes notes={record.notes} />}
     onChange={(pagination, filters, sorter) => {}}
     rowKey="_id"
     footer={() => (

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { CarPage, PartnerPage, DriverPage } from '../component';
+import { CarPage, PartnerPage, DriverPage, DailyTravel } from '../component';
 
-import { Status, Travels, Partners, Drivers, Cars } from '../table';
+import { Status, Partners, Drivers, Cars } from '../table';
 
 const Information = ({ match }) => {
   const { id, TableName } = match.params;
@@ -21,7 +21,7 @@ const Information = ({ match }) => {
       Page = () => <Status />;
       break;
     case 'travels':
-      Page = () => <Travels />;
+      Page = () => <DailyTravel />;
 
       break;
     default:

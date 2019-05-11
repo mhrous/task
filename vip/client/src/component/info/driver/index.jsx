@@ -8,7 +8,7 @@ import Travels from './travel';
 
 const TabPane = Tabs.TabPane;
 
-const Info = ({ id }) => {
+const Page = ({ id }) => {
   useEffect(() => {
     data.init({ id });
   });
@@ -32,4 +32,4 @@ const Info = ({ id }) => {
   );
 };
 
-export default Info;
+export default Page;

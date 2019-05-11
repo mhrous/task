@@ -3,9 +3,9 @@ import AddTravelModel from './addTravelModal';
 import TravelTable from './travelTable';
 import data from './data';
 
-const Travel = ({ travels }) => {
+const Travel = ({ travels, idDriver }) => {
   useEffect(() => {
-    data.init({ travels });
+    data.init({ travels, idDriver });
   });
 
   return (

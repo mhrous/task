@@ -1,5 +1,5 @@
 import React from 'react';
 
-const PartnerPage = () => <div>singel partener</div>;
+const Page = () => <div>singel partener</div>;
 
-export default PartnerPage;
+export default Page;

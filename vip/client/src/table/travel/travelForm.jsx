@@ -14,7 +14,11 @@ import moment from 'moment';
 import data from './data';
 
 const { Option } = Select;
+const { Group: InputGroup } = Input;
 const inlineStyle = { display: 'inline-block', width: 'calc(50% - 12px)' };
+const fullWidthStyle = {
+  width: 'calc(100% - 12px)'
+};
 
 const travelForm = () => (
   <Form>
@@ -114,31 +118,8 @@ const travelForm = () => (
         ...inlineStyle,
         marginLeft: '10px'
       }}
-      validateStatus={data.expensesError ? 'error' : ''}
-      help={data.expensesError}
-    >
-      <InputNumber
-        size="large"
-        type="text"
-        value={data.expenses}
-        step={500}
-        min={0}
-        max={100000}
-        disabled={data.loadingModal}
-        name="expenses"
-        placeholder="مصروف"
-        onChange={e => {
-          data.expenses = e;
-          data.expensesError = '';
-        }}
-        style={{ width: '100%' }}
-      />
-    </Form.Item>
-
-    <Form.Item
-      style={inlineStyle}
-      validateStatus={data.totalError ? 'error' : ''}
-      help={data.totalError}
+      validateStatus={data.totalToError ? 'error' : ''}
+      help={data.totalToError}
     >
       <InputNumber
         size="large"
@@ -146,57 +127,207 @@ const travelForm = () => (
         step={500}
         min={0}
         max={100000}
-        value={data.total}
+        value={data.totalTo}
         disabled={data.loadingModal}
-        name="total"
-        placeholder="اجمالي"
+        name="totalTo"
+        placeholder="ذهاب"
         onChange={e => {
-          data.total = e;
-          data.totalError = '';
+          data.totalTo = e;
+          data.totalToError = '';
         }}
         style={{ width: '100%' }}
       />
-    </Form.Item>
-
-    <Form.Item
-      style={{
-        ...inlineStyle,
-        marginLeft: '10px'
-      }}
-      validateStatus={data.partnerNameError ? 'error' : ''}
-      help={data.partnerNameError}
-    >
-      <Select
-        size="large"
-        type="text"
-        value={data.partnerName}
-        disabled={data.loadingModal || !data.type}
-        name="partner"
-        placeholder="الشريك"
-        onChange={e => {
-          data.partnerName = e;
-          data.partnerNameError = '';
-        }}
-      >
-        {data.allPartnerNameS.map(e => (
-          <Option key={e._id} value={e._id}>
-            {e.name}
-          </Option>
-        ))}
-      </Select>
     </Form.Item>
 
     <Form.Item style={inlineStyle}>
       <Switch
         checkedChildren="دين"
         unCheckedChildren="مدفوع"
-        checked={data.type}
+        checked={data.typeTo}
         onChange={e => {
-          data.type = e;
-          data.partnerName = '';
-          data.partnerNameError = '';
+          data.typeTo = e;
+          data.partnerToName = '';
+          data.partnerToNameError = '';
         }}
       />
+    </Form.Item>
+
+    {data.typeTo && (
+      <Form.Item
+        style={fullWidthStyle}
+        validateStatus={data.partnerToNameError ? 'error' : ''}
+        help={data.partnerToNameError}
+      >
+        <Select
+          size="large"
+          type="text"
+          value={data.partnerToName ? data.partnerToName : undefined}
+          disabled={data.loadingModal || !data.typeTo}
+          placeholder=" الذهاب لصالح"
+          onChange={e => {
+            data.partnerToName = e;
+            data.partnerToNameError = '';
+          }}
+        >
+          {data.allPartnerNames.map(e => (
+            <Option key={e._id} value={e._id}>
+              {e.name}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+    )}
+    <Form.Item
+      style={{ marginLeft: '10px', ...inlineStyle }}
+      validateStatus={data.totalBackError ? 'error' : ''}
+      help={data.totalBackError}
+    >
+      <InputNumber
+        size="large"
+        step={500}
+        min={0}
+        max={100000}
+        value={data.totalBack}
+        disabled={data.loadingModal}
+        name="totalBack"
+        placeholder="عودة"
+        onChange={e => {
+          data.totalBack = e;
+          data.totalBackError = '';
+        }}
+        style={{ width: '100%' }}
+      />
+    </Form.Item>
+    <Form.Item style={inlineStyle}>
+      <Switch
+        checkedChildren="دين"
+        unCheckedChildren="مدفوع"
+        checked={data.typeBack}
+        onChange={e => {
+          data.typeBack = e;
+          data.partnerBackName = '';
+          data.partnerBackNameError = '';
+        }}
+      />
+    </Form.Item>
+    {data.typeBack && (
+      <Form.Item
+        style={fullWidthStyle}
+        validateStatus={data.partnerNameError ? 'error' : ''}
+        help={data.partnerNameError}
+      >
+        <Select
+          size="large"
+          type="text"
+          value={data.partnerBackName ? data.partnerBackName : undefined}
+          disabled={data.loadingModal || !data.typeBack}
+          name="partner"
+          placeholder="العودة لصالح"
+          onChange={e => {
+            data.partnerBackName = e;
+            data.partnerBackNameError = '';
+          }}
+        >
+          {data.allPartnerNames.map(e => (
+            <Option key={e._id} value={e._id}>
+              {e.name}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+    )}
+    <Form.Item
+      style={fullWidthStyle}
+      validateStatus={data.expenses[0][2] ? 'error' : ''}
+      help={data.expenses[0][2]}
+    >
+      <InputGroup compact>
+        <Input
+          style={{ width: '50%' }}
+          placeholder="نوع المصروف "
+          size="large"
+          value={data.expenses[0][0]}
+          disabled={data.loadingModal}
+          onChange={e => {
+            data.expenses[0][0] = e.target.value;
+            data.expenses[0][2] = '';
+          }}
+        />
+        <InputNumber
+          style={{ width: '50%' }}
+          placeholder="القيمة "
+          size="large"
+          value={data.expenses[0][1]}
+          step={500}
+          min={0}
+          max={100000}
+          disabled={data.loadingModal}
+          onChange={e => {
+            data.expenses[0][1] = e;
+            data.expenses[0][2] = '';
+          }}
+        />
+      </InputGroup>
+    </Form.Item>
+
+    {data.expenses.map((e, i) =>
+      i === 0 ? (
+        ''
+      ) : (
+        <Form.Item
+          style={fullWidthStyle}
+          key={i}
+          validateStatus={e[2] ? 'error' : ''}
+          help={e[2]}
+        >
+          <InputGroup compact>
+            <Input
+              style={{ width: '45%' }}
+              placeholder="نوع المصروف "
+              value={e[0]}
+              size="large"
+              disabled={data.loadingModal}
+              onChange={e => {
+                data.expenses[i][0] = e.target.value;
+                data.expenses[i][2] = '';
+              }}
+            />
+            <InputNumber
+              style={{ width: '45%' }}
+              placeholder="القيمة "
+              value={e[1]}
+              size="large"
+              step={500}
+              min={0}
+              max={100000}
+              disabled={data.loadingModal}
+              onChange={e => {
+                data.expenses[i][1] = e;
+                data.expenses[i][2] = '';
+              }}
+            />
+            <Icon
+              type="minus-circle-o"
+              style={{
+                fontSize: '24px',
+                marginRight: '10px',
+                marginTop: '5px'
+              }}
+              onClick={() => data.removeExpenses(i)}
+            />
+          </InputGroup>
+        </Form.Item>
+      )
+    )}
+
+    <Form.Item style={fullWidthStyle}>
+      <Button
+        type="dashed"
+        onClick={() => data.addExpenses()}
+        style={{ width: '100%' }}
+      >
+        اضافة مصروف <Icon type="plus" />
+      </Button>
     </Form.Item>
 
     <Form.Item
@@ -231,7 +362,7 @@ const travelForm = () => (
         }}
       />
     </Form.Item>
-    <Form.Item>
+    <Form.Item style={fullWidthStyle}>
       <DatePicker
         size="large"
         value={moment(data.date)}
@@ -242,7 +373,7 @@ const travelForm = () => (
       />
     </Form.Item>
 
-    <Form.Item>
+    <Form.Item style={fullWidthStyle}>
       <Input
         size="large"
         type="text"
@@ -258,7 +389,7 @@ const travelForm = () => (
       i === 0 ? (
         ''
       ) : (
-        <Form.Item key={i}>
+        <Form.Item key={i} style={fullWidthStyle}>
           <Input
             size="large"
             type="text"
@@ -282,7 +413,7 @@ const travelForm = () => (
       )
     )}
 
-    <Form.Item>
+    <Form.Item style={fullWidthStyle}>
       <Button
         type="dashed"
         onClick={() => data.addNote()}

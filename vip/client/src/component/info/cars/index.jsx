@@ -1,8 +1,8 @@
 import React from 'react';
 import { PageHeader } from 'antd';
 
-const Car = () => (
+const Page = () => (
   <PageHeader onBack={() => null} title="Title" subTitle="This is a subtitle" />
 );
 
-export default Car;
+export default Page;

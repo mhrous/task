@@ -12,11 +12,7 @@ export const getDayTravel = async (req, res) => {
   try {
     const start = getStartDate();
     const end = getEndDate();
-    console.log({
-      start,
-      end
-    });
-    console.log(5555555555555);
+
     const data = await Travel.find({
         createdAt: {
           $lte: end,
@@ -24,14 +20,14 @@ export const getDayTravel = async (req, res) => {
         }
       })
       .populate('driver', 'name')
-      .populate('partner', 'name')
+      .populate('partnerTo', 'name')
+      .populate('partnerBack', 'name')
       .lean()
       .exec();
     res.status(200).json({
       data
     });
   } catch (e) {
-    console.log(e);
     res.status(400).end();
   }
 };
@@ -47,11 +43,31 @@ export const addTravel = async (req, res) => {
       to,
       clientName,
       clientPhone,
-      type,
-      total,
+
+
+      totalTo,
+      totalBack,
       expenses,
-      partner
+      partnerTo,
+      partnerBack
     } = req.body;
+    console.log({
+      car,
+      driver,
+      date,
+      notes,
+      from,
+      to,
+      clientName,
+      clientPhone,
+
+
+      totalTo,
+      totalBack,
+      expenses,
+      partnerTo,
+      partnerBack
+    })
     if (!driver) {
       return res.status(401).json({
         driver: 'يرجى ادخال السيارة'
@@ -67,16 +83,17 @@ export const addTravel = async (req, res) => {
         expenses: 'يرجى ادخال مصروف السيارة'
       });
     }
-    if (total === '') {
+    if (totalTo === '') {
       return res.status(401).json({
-        total: 'يرجى ادخال قيمة  السفرة'
+        totalTo: 'يرجى ادخال قيمة  الذهاب السفرة'
       });
     }
-    if (type && !partner) {
+    if (totalBack === '') {
       return res.status(401).json({
-        partner: 'يرجى ادخال اسم صاحب الدين '
+        totalBack: 'يرجى ادخال قيمة   العودة السفرة'
       });
     }
+
     const newTravel = await Travel.create({
       car,
       driver,
@@ -86,14 +103,16 @@ export const addTravel = async (req, res) => {
       to,
       clientName,
       clientPhone,
-      type,
-      total,
+      totalTo,
+      totalBack,
       expenses,
-      partner
+      partnerTo,
+      partnerBack
     });
     const data = await Travel.findById(newTravel._id)
       .populate('driver', 'name')
-      .populate('partner', 'name')
+      .populate('partnerTo', 'name')
+      .populate('partnerBack', 'name')
       .lean()
       .exec();
 
@@ -129,12 +148,17 @@ export const putTravel = async (req, res) => {
     const {
       body
     } = req;
-    console.log(body);
-    const data = await Travel.findByIdAndUpdate(id, body, {
+    console.log(body)
+    const data = await Travel.findByIdAndUpdate(id, {
+        partnerTo: null,
+        partnerBack: null,
+        ...body
+      }, {
         new: true
       })
       .populate('driver', 'name')
-      .populate('partner', 'name')
+      .populate('partnerTo', 'name')
+      .populate('partnerBack', 'name')
       .lean()
       .exec();
     res.status(200).json({
@@ -163,7 +187,8 @@ export const getAllTravelForDriverInMonth = async (req, res) => {
         }
       })
       .populate('driver', 'name')
-      .populate('partner', 'name')
+      .populate('partnerTo', 'name')
+      .populate('partnerBack', 'name')
       .lean()
       .exec();
     res.status(200).json({
