@@ -140,16 +140,16 @@ class Data {
   @action
   async getDriver() {
     try {
-      const res = await getJSON(`${API_URL}/admin/driver`);
-      this.drivers = res.data;
+      const { data } = await getJSON(`${API_URL}/admin/driver`);
+      this.drivers = data;
     } catch (e) {}
   }
 
   @action
   async getCarName() {
     try {
-      const res = await getJSON(`${API_URL}/car`);
-      this.carsName = res.data;
+      const { data } = await getJSON(`${API_URL}/car`);
+      this.carsName = data;
     } catch (e) {}
   }
 }

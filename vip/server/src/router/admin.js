@@ -1,4 +1,6 @@
-import { Router } from 'express';
+import {
+  Router
+} from 'express';
 import {
   getALLPartner,
   addNewPartner,
@@ -6,8 +8,9 @@ import {
   addNewCar,
   getALLDriver,
   addNewDriver,
-  getAllTravelForCarBetweenTwoDates,
-  getAllTravelForDriverBetweenTwoDates
+  getDriver,
+  getAllTravelForCarInMonth,
+  getAllTravelForDriverInMonth
 } from '../controllers';
 
 const router = Router();
@@ -19,16 +22,17 @@ router.get('/admin/car', getALLCar);
 router.post('/admin/car', addNewCar);
 
 router.get('/admin/driver', getALLDriver);
+router.get("/admin/driver/:id", getDriver)
 router.post('/admin/driver', addNewDriver);
 
 router.get(
-  '/admin/travel/:carId/:start/:end',
-  getAllTravelForCarBetweenTwoDates
+  '/admin/travel/car/:carId/:month',
+  getAllTravelForCarInMonth
 );
 
 router.get(
-  '/admin/travel/:driverId/:start/:end',
-  getAllTravelForDriverBetweenTwoDates
+  '/admin/travel/driver/:driverId/:month',
+  getAllTravelForDriverInMonth
 );
 
 export default router;

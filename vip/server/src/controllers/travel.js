@@ -1,18 +1,35 @@
-import { Travel } from '../model';
-import { getStartDate, getEndDate } from '../utils';
+import {
+  Travel
+} from '../model';
+import {
+  getStartDate,
+  getEndDate,
+  getFirstOfNextMonth,
+  getFirstOfThisMonth
+} from '../utils';
 
 export const getDayTravel = async (req, res) => {
   try {
     const start = getStartDate();
     const end = getEndDate();
-    console.log({ start, end });
+    console.log({
+      start,
+      end
+    });
     console.log(5555555555555);
-    const data = await Travel.find({ createdAt: { $lte: end, $gte: start } })
+    const data = await Travel.find({
+        createdAt: {
+          $lte: end,
+          $gte: start
+        }
+      })
       .populate('driver', 'name')
       .populate('partner', 'name')
       .lean()
       .exec();
-    res.status(200).json({ data });
+    res.status(200).json({
+      data
+    });
   } catch (e) {
     console.log(e);
     res.status(400).end();
@@ -36,19 +53,29 @@ export const addTravel = async (req, res) => {
       partner
     } = req.body;
     if (!driver) {
-      return res.status(401).json({ driver: 'يرجى ادخال السيارة' });
+      return res.status(401).json({
+        driver: 'يرجى ادخال السيارة'
+      });
     }
     if (!car) {
-      return res.status(401).json({ car: 'يرجى ادخال السيارة' });
+      return res.status(401).json({
+        car: 'يرجى ادخال السيارة'
+      });
     }
     if (expenses === '') {
-      return res.status(401).json({ expenses: 'يرجى ادخال مصروف السيارة' });
+      return res.status(401).json({
+        expenses: 'يرجى ادخال مصروف السيارة'
+      });
     }
     if (total === '') {
-      return res.status(401).json({ total: 'يرجى ادخال قيمة  السفرة' });
+      return res.status(401).json({
+        total: 'يرجى ادخال قيمة  السفرة'
+      });
     }
     if (type && !partner) {
-      return res.status(401).json({ partner: 'يرجى ادخال اسم صاحب الدين ' });
+      return res.status(401).json({
+        partner: 'يرجى ادخال اسم صاحب الدين '
+      });
     }
     const newTravel = await Travel.create({
       car,
@@ -70,7 +97,9 @@ export const addTravel = async (req, res) => {
       .lean()
       .exec();
 
-    res.status(200).json({ data });
+    res.status(200).json({
+      data
+    });
   } catch (e) {
     res.status(400).end();
   }
@@ -78,11 +107,15 @@ export const addTravel = async (req, res) => {
 
 export const deleteTravel = async (req, res) => {
   try {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
     const data = await Travel.findByIdAndRemove(id)
       .lean()
       .exec();
-    res.status(200).json({ data });
+    res.status(200).json({
+      data
+    });
   } catch (e) {
     res.status(400).end();
   }
@@ -90,30 +123,59 @@ export const deleteTravel = async (req, res) => {
 
 export const putTravel = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { body } = req;
+    const {
+      id
+    } = req.params;
+    const {
+      body
+    } = req;
     console.log(body);
-    const data = await Travel.findByIdAndUpdate(id, body, { new: true })
+    const data = await Travel.findByIdAndUpdate(id, body, {
+        new: true
+      })
       .populate('driver', 'name')
       .populate('partner', 'name')
       .lean()
       .exec();
-    res.status(200).json({ data });
+    res.status(200).json({
+      data
+    });
   } catch (e) {
     res.status(400).end();
   }
 };
 
-export const getAllTravelForDriverBetweenTwoDates = async (req, res) => {
+export const getAllTravelForDriverInMonth = async (req, res) => {
   try {
+    const {
+      driverId: driver,
+      month
+    } = req.params
+
+    const start = getFirstOfThisMonth(month);
+
+    const end = getFirstOfNextMonth(month);
+    const data = await Travel.find({
+        driver,
+        date: {
+          $lte: end,
+          $gte: start
+        }
+      })
+      .populate('driver', 'name')
+      .populate('partner', 'name')
+      .lean()
+      .exec();
+    res.status(200).json({
+      data
+    })
   } catch (e) {
     res.status(400).end();
   }
 };
 
-export const getAllTravelForCarBetweenTwoDates = async (req, res) => {
-  try {
-  } catch (e) {
+export const getAllTravelForCarInMonth = async (req, res) => {
+  try {} catch (e) {
     res.status(400).end();
   }
 };

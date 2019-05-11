@@ -221,8 +221,9 @@ class Data {
     } catch (e) {}
   }
 
-  init() {
-    this.getTravel();
+  init({ travels }) {
+    travels ? (this.travels = travels) : this.getTravel();
+
     this.getDriverAndCarName();
     this.getPartnerName();
   }

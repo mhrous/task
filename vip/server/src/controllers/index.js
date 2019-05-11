@@ -2,18 +2,30 @@ import {
   getALLDriver,
   getALLDriverName,
   addNewDriver,
-  getDriverWithCar
+  getDriverWithCar,
+  getDriver
 } from './driver';
-import { getALLPartner, getALLPartnerName, addNewPartner } from './partner';
-import { getALLCar, getALLCarNumberName, addNewCar } from './car';
-import { getStatus, updateStatus } from './status';
 import {
-  getAllTravelForCarBetweenTwoDates,
+  getALLPartner,
+  getALLPartnerName,
+  addNewPartner
+} from './partner';
+import {
+  getALLCar,
+  getALLCarNumberName,
+  addNewCar
+} from './car';
+import {
+  getStatus,
+  updateStatus
+} from './status';
+import {
+  getAllTravelForCarInMonth,
   getDayTravel,
   addTravel,
   putTravel,
   deleteTravel,
-  getAllTravelForDriverBetweenTwoDates
+  getAllTravelForDriverInMonth
 } from './travel';
 
 export {
@@ -21,6 +33,7 @@ export {
   getALLDriverName,
   addNewDriver,
   getDriverWithCar,
+  getDriver,
   //
   getALLPartner,
   getALLPartnerName,
@@ -33,10 +46,10 @@ export {
   getStatus,
   updateStatus,
   //
-  getAllTravelForCarBetweenTwoDates,
+  getAllTravelForCarInMonth,
   getDayTravel,
   addTravel,
   putTravel,
   deleteTravel,
-  getAllTravelForDriverBetweenTwoDates
+  getAllTravelForDriverInMonth
 };
