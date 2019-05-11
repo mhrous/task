@@ -4,7 +4,14 @@ import { Travels } from '../../../table';
 import data from './data';
 
 const Table = ({ paid }) => {
-  return <Travels travels={data.travels} />;
+  return (
+    <Travels
+      travels={data.travels}
+      add={data.add.bind(data)}
+      _delete={data._delete.bind(data)}
+      put={data.put.bind(data)}
+    />
+  );
 };
 
 export default observer(Table);

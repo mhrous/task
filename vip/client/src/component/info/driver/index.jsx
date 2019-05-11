@@ -5,6 +5,8 @@ import { Tabs } from 'antd';
 import data from './data';
 import Header from './header';
 import Travels from './travel';
+import Receipt from './receipt';
+import Footer from './footer';
 
 const TabPane = Tabs.TabPane;
 
@@ -21,13 +23,14 @@ const Page = ({ id }) => {
         </TabPane>
         <TabPane tab="وصول الدين" key="2">
           <Header />
-          <Travels />
+          <Receipt />
         </TabPane>
         <TabPane tab="دفعات" key="3">
           <Header />
           Content of Tab Pane 3
         </TabPane>
       </Tabs>
+      <Footer />
     </Fragment>
   );
 };

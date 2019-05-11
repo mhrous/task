@@ -51,23 +51,6 @@ export const addTravel = async (req, res) => {
       partnerTo,
       partnerBack
     } = req.body;
-    console.log({
-      car,
-      driver,
-      date,
-      notes,
-      from,
-      to,
-      clientName,
-      clientPhone,
-
-
-      totalTo,
-      totalBack,
-      expenses,
-      partnerTo,
-      partnerBack
-    })
     if (!driver) {
       return res.status(401).json({
         driver: 'يرجى ادخال السيارة'
@@ -148,7 +131,6 @@ export const putTravel = async (req, res) => {
     const {
       body
     } = req;
-    console.log(body)
     const data = await Travel.findByIdAndUpdate(id, {
         partnerTo: null,
         partnerBack: null,
@@ -173,12 +155,13 @@ export const getAllTravelForDriverInMonth = async (req, res) => {
   try {
     const {
       driverId: driver,
-      month
+      month,
+      year
     } = req.params
 
-    const start = getFirstOfThisMonth(month);
+    const start = getFirstOfThisMonth(month, year);
 
-    const end = getFirstOfNextMonth(month);
+    const end = getFirstOfNextMonth(month, year);
     const data = await Travel.find({
         driver,
         date: {

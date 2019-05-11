@@ -213,8 +213,8 @@ const travelForm = () => (
     {data.typeBack && (
       <Form.Item
         style={fullWidthStyle}
-        validateStatus={data.partnerNameError ? 'error' : ''}
-        help={data.partnerNameError}
+        validateStatus={data.partnerBackNameError ? 'error' : ''}
+        help={data.partnerBackNameError}
       >
         <Select
           size="large"

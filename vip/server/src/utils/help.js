@@ -18,14 +18,12 @@ export const getEndDate = () => {
   return date;
 };
 
-export const getFirstOfThisMonth = (m) => {
-  let d = new Date();
-  m = parseInt(m)
-  return new Date(d.getFullYear(), m, 1, 0, 0, 0, 0)
-};
-export const getFirstOfNextMonth = (m) => {
-  let d = new Date();
-  m = parseInt(m)
+export const getFirstOfThisMonth = (m, y = new Date().getFullYear()) => {
 
-  return new Date(d.getFullYear(), m + 1, 1, 0, 0, 0, 0)
+  return new Date(y, parseInt(m), 1, 0, 0, 0, 0)
+};
+export const getFirstOfNextMonth = (m, y = new Date().getFullYear()) => {
+
+
+  return new Date(y, parseInt(m) + 1, 1, 0, 0, 0, 0)
 };

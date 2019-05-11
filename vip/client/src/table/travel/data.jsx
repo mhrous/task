@@ -5,7 +5,6 @@ import { API_URL } from '../../config';
 const confirm = Modal.confirm;
 
 class Data {
-  idDriver = null;
   @observable travels = [];
   @observable selectedTreavel = {};
   //modal
@@ -98,6 +97,8 @@ class Data {
     this.notes = record.notes;
     this.driverName = record.driver._id;
     this.carName = record.car;
+    this.getDriverAndCarName();
+    this.getPartnerName();
   }
 
   @action
@@ -145,9 +146,7 @@ class Data {
       }
       expenses[key] = value;
     });
-    console.log({ error });
     if (error) return;
-    console.log('NO EeeOR');
     const obj = {
       car: this.carName,
       driver: this.driverName || undefined,
@@ -164,31 +163,21 @@ class Data {
       partnerBack: this.partnerBackName || undefined,
       expenses
     };
-    console.log(obj);
 
     this.loadingModal = true;
 
     try {
       if (!this.openModalUpdata) {
         const { data } = await postJSON(`${API_URL}/travel`, obj);
-        console.log(data);
 
-        this.travels = [...this.travels, data];
+        this.add({ newTravel: data });
         message.success(`تم اضافة السفرة بنجاح`);
       } else {
         const { data } = await putJSON(
           `${API_URL}/travel/${this.idForUpdata}`,
           obj
         );
-        console.log(data);
-        let updataIndex = this.travels.findIndex(
-          e => e._id === this.idForUpdata
-        );
-        this.travels = [
-          ...this.travels.slice(0, updataIndex),
-          data,
-          ...this.travels.slice(updataIndex + 1)
-        ];
+        this.put({ _id: this.idForUpdata, newTravel: data });
 
         message.success(`تم تعديل السفرة بنجاح`);
       }
@@ -259,18 +248,18 @@ class Data {
     } catch (e) {}
   }
 
-  init({ travels, idDriver }) {
+  init({ travels, add, put, _delete }) {
     this.travels = travels;
-    this.idDriver = idDriver || null;
-    this.getDriverAndCarName();
-    this.getPartnerName();
+    this.add = add;
+    this.put = put;
+    this._delete = _delete;
   }
 
   @action
-  async deleteTravel(id) {
+  async deleteTravel(_id) {
     try {
-      await deleteJSON(`${API_URL}/travel/${id}`);
-      this.travels = this.travels.filter(e => e._id !== id);
+      await deleteJSON(`${API_URL}/travel/${_id}`);
+      this._delete({ _id });
     } catch (e) {}
   }
 

@@ -77,7 +77,7 @@ const columns = [
       </Fragment>
     )
   },
-  ,
+
   {
     title: 'صافي',
     key: '_id',
@@ -130,6 +130,8 @@ const TravelTable = () => (
         type="primary"
         onClick={() => {
           data.openModal = true;
+          data.getDriverAndCarName();
+          data.getPartnerName();
         }}
       >
         <Icon type="plus" />

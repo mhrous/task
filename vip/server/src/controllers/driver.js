@@ -113,7 +113,7 @@ export const getDriver = async (req, res) => {
     } = req.params
 
     const data = await Driver.findById(id)
-      .populate('car', 'name number')
+      .populate('car', 'name number expensesMax')
       .lean()
       .exec();
     return res.status(200).send({

@@ -13,7 +13,8 @@ import {
 import {
   getALLCar,
   getALLCarNumberName,
-  addNewCar
+  addNewCar,
+  getCar
 } from './car';
 import {
   getStatus,
@@ -40,6 +41,7 @@ export {
   addNewPartner,
   //
   getALLCar,
+  getCar,
   getALLCarNumberName,
   addNewCar,
   //

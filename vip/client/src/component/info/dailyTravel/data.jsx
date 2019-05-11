@@ -16,6 +16,15 @@ class Data {
       this.travels = data;
     } catch (e) {}
   }
+  @action _delete({ _id }) {
+    this.travels = this.travels.filter(e => e._id !== _id);
+  }
+  @action put({ _id, newTravel }) {
+    this.travels = this.travels.map(e => (e._id === _id ? newTravel : e));
+  }
+  @action add({ newTravel }) {
+    this.travels = [...this.travels, newTravel];
+  }
 }
 
 export default new Data();

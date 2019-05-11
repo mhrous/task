@@ -19,8 +19,11 @@ class Data {
   @action
   async getDriver() {
     try {
-      const { data } = await getJSON(`${API_URL}/admin/driver/${this.id}`);
-      this.driver = data;
+      const { data: driver } = await getJSON(
+        `${API_URL}/admin/driver/${this.id}`
+      );
+
+      this.driver = driver;
     } catch (e) {}
   }
 
@@ -28,19 +31,102 @@ class Data {
   async getTravel() {
     try {
       const { data } = await getJSON(
-        `${API_URL}/admin/travel/driver/${this.id}/${this.date.month()}`
+        `${API_URL}/admin/travel/driver/${
+          this.id
+        }/${this.date.month()}/${this.date.year()}`
       );
       this.travels = data;
     } catch (e) {}
   }
 
-  @computed
-  get getUnpaid() {
-    return this.travels.filter(travel => travel.type) || [{}];
+  @action _delete({ _id }) {
+    this.travels = this.travels.filter(e => e._id !== _id);
   }
-  @computed
-  get getPaid() {
-    return this.travels.filter(travel => travel.type) || [{}];
+  @action put({ _id, newTravel }) {
+    const date = new Date(newTravel.date);
+
+    if (
+      newTravel.driver._id === this.id &&
+      date.getMonth() === this.date.month() &&
+      date.getFullYear() === this.date.year()
+    )
+      this.travels = this.travels.map(e => (e._id === _id ? newTravel : e));
+    else this.travels = this.travels.filter(e => e._id !== _id);
+  }
+  @action add({ newTravel }) {
+    const date = new Date(newTravel.date);
+
+    if (
+      newTravel.driver._id === this.id &&
+      date.getMonth() === this.date.month() &&
+      date.getFullYear() === this.date.year()
+    )
+      this.travels = [...this.travels, newTravel];
+  }
+
+  @computed get receipt() {
+    const res = [];
+    this.travels.forEach(e => {
+      if (e.partnerTo) {
+        res.push({
+          type: 'ذهاب',
+          date: e.date,
+          partner: e.partnerTo,
+          total: e.totalTo,
+          notes: e.notes
+        });
+      }
+
+      if (e.partnerBack) {
+        res.push({
+          type: 'اياب',
+          date: e.date,
+          partner: e.partnerBack,
+          total: e.totalBack,
+          notes: e.notes
+        });
+      }
+    });
+    return res;
+  }
+  @computed get receiptValue() {
+    return this.receipt.reduce((a, b) => a + b.total, 0);
+  }
+  @computed get total() {
+    return this.travels.reduce((a, b) => {
+      const c = Object.entries(b.expenses).reduce((_a, _b) => _a + _b[1], 0);
+
+      return a + b.totalTo + b.totalBack - c;
+    }, 0);
+  }
+
+  @computed get expenses() {
+    return this.travels.reduce((a, b) => {
+      const c = Object.entries(b.expenses).reduce((_a, _b) => _a + _b[1], 0);
+
+      return a + c;
+    }, 0);
+  }
+  @computed get emptyTo() {
+    return this.travels.reduce((a, b) => {
+      const c = !b.totalTo ? 1 : 0;
+      return a + c;
+    }, 0);
+  }
+  @computed get emptyBack() {
+    return this.travels.reduce((a, b) => {
+      const c = !b.totalBack ? 1 : 0;
+      return a + c;
+    }, 0);
+  }
+
+  @computed get expensesMax() {
+    return this.travels.reduce((a, b) => {
+      const c = Object.entries(b.expenses).reduce((_a, _b) => _a + _b[1], 0);
+      const _c = c > this.driver.car.expensesMax ? 1 : 0;
+
+      return a + _c;
+    }, 0);
   }
 }
 

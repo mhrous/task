@@ -7,7 +7,7 @@ class User {
   @observable password = '';
   @observable errorPassword = '';
   @observable errorName = '';
-  @observable logIn = true;
+  @observable logIn = false;
   @observable loading = false;
 
   @action
