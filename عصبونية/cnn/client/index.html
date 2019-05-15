@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Generate Html</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./MYCSS/main.css" />
+  </head>
+  <body>
+    <ul class="nav nav-pills hide">
+      <li class="nav-item">
+        <a class="nav-link active" href="#" data-id="c">chart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#" data-id="p">predict</a>
+      </li>
+    </ul>
+
+    <div id="loader" class="">
+      <div class="loader">
+        <div class="loader_overlay"></div>
+        <div class="loader_cogs">
+          <div class="loader_cogs__top">
+            <div class="top_part"></div>
+            <div class="top_part"></div>
+            <div class="top_part"></div>
+            <div class="top_hole"></div>
+          </div>
+          <div class="loader_cogs__left">
+            <div class="left_part"></div>
+            <div class="left_part"></div>
+            <div class="left_part"></div>
+            <div class="left_hole"></div>
+          </div>
+          <div class="loader_cogs__bottom">
+            <div class="bottom_part"></div>
+            <div class="bottom_part"></div>
+            <div class="bottom_part"></div>
+            <div class="bottom_hole"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="predict" class="hide">
+      <div class="row a">
+        <div class="col-9 a--b">
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control right" />
+        </div>
+      </div>
+      <div class="row b">
+        <div class="col-9  b--b">
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control right" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9"><hr /></div>
+      </div>
+      <div class="row res">
+        <div class="col-9  res--b">
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+          <div>0</div>
+        </div>
+        <div class="col-3">
+          <input type="number disabled" disabled class="form-control right" />
+        </div>
+      </div>
+    </div>
+
+    <div id="chart-container" class="hide"><canvas id="myChart"></canvas></div>
+
+    <script src="./js/jquery-3.2.0.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/c.js"></script>
+    <Script src="./MYJS/drow.js"></Script>
+
+    <script src="./MYJS/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./lib/css/bootstrab.css" />
+    <link rel="stylesheet" href="./lib/css/style.css" />
+
+    <title>colorpredictor</title>
+  </head>
+  <body>
+    <ul class="nav nav-pills header  justify-content-center hide">
+      <li class="nav-item">
+        <a class="nav-link active" href="#" data-id="1">Backpropagation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-id="2"> Momentum</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-id="3">levenberg Marquardt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-id="chart">Charts</a>
+      </li>
+    </ul>
+    <div class="container">
+      <div id="loader" class="">
+        <div class="loader">
+          <div class="loader_overlay"></div>
+          <div class="loader_cogs">
+            <div class="loader_cogs__top">
+              <div class="top_part"></div>
+              <div class="top_part"></div>
+              <div class="top_part"></div>
+              <div class="top_hole"></div>
+            </div>
+            <div class="loader_cogs__left">
+              <div class="left_part"></div>
+              <div class="left_part"></div>
+              <div class="left_part"></div>
+              <div class="left_hole"></div>
+            </div>
+            <div class="loader_cogs__bottom">
+              <div class="bottom_part"></div>
+              <div class="bottom_part"></div>
+              <div class="bottom_part"></div>
+              <div class="bottom_hole"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-content hide">
+        <div id="chart-container" class="hide">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div id="color_predictor_container"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./lib/js/jquery.js"></script>
+    <script type="text/javascript" src="./lib/js/p5.js"></script>
+    <script type="text/javascript" src="./lib/js/p5.dom.js"></script>
+    <script type="text/javascript" src="./lib/js/c.js"></script>
+    <script type="text/javascript" src="./lib/helper.js"></script>
+    <script type="text/javascript" src="./lib/new.js"></script>
+    <script type="text/javascript" src="./lib/matrix.js"></script>
+    <script type="text/javascript" src="./data.js"></script>
+    <script type="text/javascript" src="./sketch.js"></script>
+    <script type="text/javascript" src="./drawChart.js"></script>
+  </body>
+</html>

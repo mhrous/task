@@ -1,0 +1,1 @@
+cd node/src && node index.js

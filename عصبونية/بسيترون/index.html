@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrab.css" />
+    <link rel="stylesheet" href="./css/styls.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <div class="canvas"></div>
+        <div class="list">
+          <div class="b-container">
+            <div class="b" style="background:#e83e8c" data-id="0">select</div>
+            <div class="b" style="background:#ffc107" data-id="1"></div>
+          </div>
+          <div class="add">+</div>
+
+          <div class="res">
+ 
+          </div>
+
+          <input
+            class="form-control accuracy"
+            type="number"
+            placeholder="ACCURACY"
+            max="100"
+            value="100"
+            min="0"
+            step="1"
+          />
+          <div class="train">Train</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/lib/jquery.js"></script>
+    <script type="text/javascript" src="./js/lib/swl.js"></script>
+    <script type="text/javascript" src="./js/lib/p5.js"></script>
+
+    <script type="text/javascript" src="./js/lib/p5.dom.js"></script>
+    <script type="text/javascript" src="./js/helper.js"></script>
+    <script type="text/javascript" src="./js/data.js"></script>
+    <script type="text/javascript" src="./js/perceptron.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/sketch.js"></script>
+  </body>
+</html>
