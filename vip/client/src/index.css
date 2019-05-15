@@ -54,8 +54,8 @@ body {
   white-space: nowrap;
 }
 
-.ant-table-thead>tr,
-.ant-table-tbody>tr {
+.ant-table-thead > tr,
+.ant-table-tbody > tr {
   background: #fff;
 }
 
@@ -68,7 +68,7 @@ body {
   right: 90%;
 }
 
-.ant-modal-footer>div {
+.ant-modal-footer > div {
   display: flex;
   justify-items: legacy;
   justify-content: flex-end;
@@ -212,7 +212,8 @@ body {
   padding: 0;
 }
 
-.react-contextmenu-item.react-contextmenu-submenu>.react-contextmenu-item:after {
+.react-contextmenu-item.react-contextmenu-submenu
+  > .react-contextmenu-item:after {
   content: '▶';
   display: inline-block;
   position: absolute;
@@ -228,7 +229,7 @@ body {
   top: 50%;
 
   right: calc(100% - 210px);
-  transform: translateY(-50%)
+  transform: translateY(-50%);
 }
 
 /* react-contextmenu  end */
