@@ -1,6 +1,4 @@
-import {
-  Travel
-} from '../model';
+import { Travel } from '../model';
 import {
   getStartDate,
   getEndDate,
@@ -14,11 +12,11 @@ export const getDayTravel = async (req, res) => {
     const end = getEndDate();
 
     const data = await Travel.find({
-        createdAt: {
-          $lte: end,
-          $gte: start
-        }
-      })
+      createdAt: {
+        $lte: end,
+        $gte: start
+      }
+    })
       .populate('driver', 'name')
       .populate('partnerTo', 'name')
       .populate('partnerBack', 'name')
@@ -43,7 +41,6 @@ export const addTravel = async (req, res) => {
       to,
       clientName,
       clientPhone,
-
 
       totalTo,
       totalBack,
@@ -109,9 +106,7 @@ export const addTravel = async (req, res) => {
 
 export const deleteTravel = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params;
+    const { id } = req.params;
     const data = await Travel.findByIdAndRemove(id)
       .lean()
       .exec();
@@ -125,19 +120,19 @@ export const deleteTravel = async (req, res) => {
 
 export const putTravel = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params;
-    const {
-      body
-    } = req;
-    const data = await Travel.findByIdAndUpdate(id, {
+    const { id } = req.params;
+    const { body } = req;
+    const data = await Travel.findByIdAndUpdate(
+      id,
+      {
         partnerTo: null,
         partnerBack: null,
         ...body
-      }, {
+      },
+      {
         new: true
-      })
+      }
+    )
       .populate('driver', 'name')
       .populate('partnerTo', 'name')
       .populate('partnerBack', 'name')
@@ -153,22 +148,18 @@ export const putTravel = async (req, res) => {
 
 export const getAllTravelForDriverInMonth = async (req, res) => {
   try {
-    const {
-      driverId: driver,
-      month,
-      year
-    } = req.params
+    const { driverId: driver, month, year } = req.params;
 
     const start = getFirstOfThisMonth(month, year);
 
     const end = getFirstOfNextMonth(month, year);
     const data = await Travel.find({
-        driver,
-        date: {
-          $lte: end,
-          $gte: start
-        }
-      })
+      driver,
+      date: {
+        $lte: end,
+        $gte: start
+      }
+    })
       .populate('driver', 'name')
       .populate('partnerTo', 'name')
       .populate('partnerBack', 'name')
@@ -176,14 +167,15 @@ export const getAllTravelForDriverInMonth = async (req, res) => {
       .exec();
     res.status(200).json({
       data
-    })
+    });
   } catch (e) {
     res.status(400).end();
   }
 };
 
 export const getAllTravelForCarInMonth = async (req, res) => {
-  try {} catch (e) {
+  try {
+  } catch (e) {
     res.status(400).end();
   }
 };
