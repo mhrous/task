@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import { message } from 'antd';
-import { getJSON, postJSON } from '../../lib';
+import { postJSON } from '../../lib';
 import { API_URL } from '../../config';
 
 class Data {
@@ -63,13 +63,17 @@ class Data {
 
     try {
       const { data } = await postJSON(`${API_URL}/admin/car`, obj);
+      console.log(data);
+
+      this.add({ newCar: data });
       this.initForm();
 
-      this.cars = [...this.cars, data];
       this.loadingModal = false;
       this.openModal = false;
       message.success(`تم اضافة ${obj.name} [ ${obj.number} ] `);
     } catch (e) {
+      console.log(e, 'eeeeeeeeeeeeeeeeeeeee');
+
       this.carNameError = e.name;
       this.carNumberError = e.number;
       this.carMaxError = e.expensesMax;
@@ -111,16 +115,11 @@ class Data {
     }
   }
 
-  @action
-  async getCars() {
-    try {
-      const res = await getJSON(`${API_URL}/admin/car`);
-      this.cars = res.data;
-    } catch (e) {}
-  }
-
-  init() {
-    this.getCars();
+  init({ cars, add, put, _delete }) {
+    this.cars = cars;
+    this.add = add;
+    this.put = put;
+    this._delete = _delete;
   }
 }
 

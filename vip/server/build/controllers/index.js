@@ -123,6 +123,12 @@ Object.defineProperty(exports, "getAllTravelForDriverInMonth", {
     return _travel.getAllTravelForDriverInMonth;
   }
 });
+Object.defineProperty(exports, "updateUser", {
+  enumerable: true,
+  get: function () {
+    return _user.updateUser;
+  }
+});
 
 var _driver = require("./driver");
 
@@ -133,3 +139,5 @@ var _car = require("./car");
 var _status = require("./status");
 
 var _travel = require("./travel");
+
+var _user = require("./user");

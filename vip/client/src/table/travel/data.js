@@ -39,7 +39,7 @@ class Data {
   @observable clientName = '';
   @observable clientPhone = '';
   @observable notes = [''];
-  @observable expenses = [['', '', '']];
+  @observable expenses = [['اساسي', '', '']];
 
   //
   @observable allPartnerNames = [];
@@ -68,7 +68,7 @@ class Data {
     this.clientPhone = '';
     this.notes = [''];
     this.date = new Date();
-    this.expenses = [['', '', '']];
+    this.expenses = [['اساسي', '', '']];
   }
 
   @action

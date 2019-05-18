@@ -69,12 +69,8 @@ class User {
       const res = await postJSON(`${API_URL}/signin`, obj);
       auth(res);
       this.loading = false;
-      this.init();
 
       this.logIn = true;
-
-      if (res.error) {
-      }
     } catch (e) {
       this.errorName = e.name;
       this.errorPassword = e.password;
