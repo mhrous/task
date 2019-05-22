@@ -8,7 +8,7 @@ const router = Router();
 router.use('/', userRouter);
 router.post('/signUb', signUp);
 router.post('/signIn', signIn);
-//router.use(protect);
+// router.use(protect);
 router.use('/', admainRouter);
 
 export default router;

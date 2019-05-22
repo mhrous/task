@@ -1,0 +1,133 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+}
+
+#log-in-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#log-in-page .container {
+  width: 350px;
+}
+#log-in-page img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+#container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+#side-bar-container {
+  width: 240px;
+}
+#content-container {
+  width: calc(100% - 250px);
+  padding: 15px 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#side-bar-container .ui.menu > .item {
+  font-size: 20px;
+}
+#side-bar-container .ui.menu > .item.active,
+#side-bar-container .ui.menu > .item:hover,
+.ui.primary.button,
+.ui.primary.buttons .button {
+  background: #1a73e8;
+}
+.ui.input > input,
+.ui.form input:not([type]),
+.ui.form input[type='date'],
+.ui.form input[type='datetime-local'],
+.ui.form input[type='email'],
+.ui.form input[type='file'],
+.ui.form input[type='number'],
+.ui.form input[type='password'],
+.ui.form input[type='search'],
+.ui.form input[type='tel'],
+.ui.form input[type='text'],
+.ui.form input[type='time'],
+.ui.form input[type='url'] {
+  border-width: 2px !important;
+}
+.ui.input.focus > input,
+.ui.form input:not([type]):focus,
+.ui.form input[type='date']:focus,
+.ui.form input[type='datetime-local']:focus,
+.ui.form input[type='email']:focus,
+.ui.form input[type='file']:focus,
+.ui.form input[type='number']:focus,
+.ui.form input[type='password']:focus,
+.ui.form input[type='search']:focus,
+.ui.form input[type='tel']:focus,
+.ui.form input[type='text']:focus,
+.ui.form input[type='time']:focus,
+.ui.form input[type='url']:focus,
+.ui.input > input:focus {
+  border-color: #1a73e8 !important;
+}
+.ui.input.error > input:focus,
+.ui.form .field.error input:not([type]):focus,
+.ui.form .field.error input[type='date']:focus,
+.ui.form .field.error input[type='datetime-local']:focus,
+.ui.form .field.error input[type='email']:focus,
+.ui.form .field.error input[type='file']:focus,
+.ui.form .field.error input[type='number']:focus,
+.ui.form .field.error input[type='password']:focus,
+.ui.form .field.error input[type='search']:focus,
+.ui.form .field.error input[type='tel']:focus,
+.ui.form .field.error input[type='text']:focus,
+.ui.form .field.error input[type='time']:focus,
+.ui.form .field.error input[type='url']:focus,
+.ui.form .field.error select:focus,
+.ui.form .field.error textarea:focus {
+  border-color: #db2828 !important;
+}
+
+#side-bar-container .ui.vertical.sidebar.menu > .item::before {
+  display: none !important;
+}
+#side-bar-container .ui.vertical.sidebar.menu .action {
+  position: absolute;
+  width: 100%;
+  top: calc(100% - 20px);
+  left: 100%;
+  transform: translate(-100%, -100%);
+}
+
+#side-bar-container .ui.vertical.sidebar.menu .action button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+}
+
+#content-container th {
+  font-size: 20px;
+  text-align: center;
+  line-height: 26px;
+  font-weight: bolder;
+}
+#content-container td {
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+}
+.add-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none !important;
+}

@@ -5,21 +5,19 @@ import {
   getDriverWithCar,
   getDriver
 } from './driver';
+
+import { getALLPartner, getALLPartnerName, addNewPartner } from './partner';
+
+import { getALLCar, getALLCarNumberName, addNewCar, getCar } from './car';
+import { getStatus, updateStatus } from './status';
+
 import {
-  getALLPartner,
-  getALLPartnerName,
-  addNewPartner
-} from './partner';
-import {
-  getALLCar,
-  getALLCarNumberName,
-  addNewCar,
-  getCar
-} from './car';
-import {
-  getStatus,
-  updateStatus
-} from './status';
+  addPayment,
+  deletePayment,
+  putPayment,
+  getAllPaymentForDriverInMonth
+} from './payments';
+
 import {
   getAllTravelForCarInMonth,
   getDayTravel,
@@ -28,6 +26,8 @@ import {
   deleteTravel,
   getAllTravelForDriverInMonth
 } from './travel';
+
+import { updateUser } from './user';
 
 export {
   getALLDriver,
@@ -53,5 +53,12 @@ export {
   addTravel,
   putTravel,
   deleteTravel,
-  getAllTravelForDriverInMonth
+  getAllTravelForDriverInMonth,
+  //
+  updateUser,
+  //
+  addPayment,
+  deletePayment,
+  putPayment,
+  getAllPaymentForDriverInMonth
 };

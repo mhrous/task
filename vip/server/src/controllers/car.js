@@ -1,11 +1,9 @@
-import {
-  Car
-} from '../model';
+import { Car } from '../model';
 export const getALLCar = async (req, res) => {
   try {
     const data = await Car.find({
-        active: true
-      })
+      active: true
+    })
       .lean()
       .exec();
 
@@ -18,9 +16,7 @@ export const getALLCar = async (req, res) => {
 };
 export const getCar = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params
+    const { id } = req.params;
     const data = await Car.findById(id)
       .lean()
       .exec();
@@ -36,8 +32,8 @@ export const getCar = async (req, res) => {
 export const getALLCarNumberName = async (req, res) => {
   try {
     const data = await Car.find({
-        active: true
-      })
+      active: true
+    })
       .select('name number')
       .lean()
       .exec();
@@ -51,11 +47,7 @@ export const getALLCarNumberName = async (req, res) => {
 };
 
 export const addNewCar = async (req, res) => {
-  const {
-    number,
-    expensesMax,
-    name
-  } = req.body;
+  const { number, expensesMax, name } = req.body;
   if (!number) {
     return res.status(400).send({
       number: 'يجب ادخال رقم السيارة'
@@ -74,14 +66,15 @@ export const addNewCar = async (req, res) => {
 
   try {
     const car = await Car.findOne({
-        number
-      })
+      number
+    })
       .lean()
       .exec();
 
     if (car) {
       return res.status(401).json({
-        number: ' السيارة موجودة مسبقا اذا رغبت بتعديل معلوماتها يمكنك تعديلها من صفحتها'
+        number:
+          ' السيارة موجودة مسبقا اذا رغبت بتعديل معلوماتها يمكنك تعديلها من صفحتها'
       });
     }
     const data = await Car.create(req.body);

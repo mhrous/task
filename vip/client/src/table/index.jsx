@@ -4,5 +4,6 @@ import Partners from './partners';
 import Drivers from './driver';
 import Cars from './car';
 import Receipt from './receipt';
+import ExtereExpenses from './extereExpenses';
 
-export { Receipt, Status, Travels, Partners, Drivers, Cars };
+export { Receipt, Status, Travels, Partners, Drivers, Cars, ExtereExpenses };

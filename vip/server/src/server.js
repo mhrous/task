@@ -10,6 +10,7 @@ import vipRouter from './router';
 export const app = express();
 
 app.disable('x-powered-by');
+app.disable('etag');
 
 app.use(cors());
 app.use(json());

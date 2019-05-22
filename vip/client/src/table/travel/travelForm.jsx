@@ -69,7 +69,7 @@ const travelForm = () => (
       </Select>
     </Form.Item>
 
-    <Form.Item
+    {/* <Form.Item
       style={{
         ...inlineStyle,
         marginLeft: '10px'
@@ -112,7 +112,7 @@ const travelForm = () => (
         ))}
       </Select>
     </Form.Item>
-
+      */}
     <Form.Item
       style={{
         ...inlineStyle,
@@ -244,14 +244,9 @@ const travelForm = () => (
       <InputGroup compact>
         <Input
           style={{ width: '50%' }}
-          placeholder="نوع المصروف "
           size="large"
           value={data.expenses[0][0]}
-          disabled={data.loadingModal}
-          onChange={e => {
-            data.expenses[0][0] = e.target.value;
-            data.expenses[0][2] = '';
-          }}
+          disabled
         />
         <InputNumber
           style={{ width: '50%' }}

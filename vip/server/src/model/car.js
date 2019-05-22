@@ -24,6 +24,10 @@ const carSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true
+  },
+  type: {
+    type: String,
+    default: ' '
   }
 });
 

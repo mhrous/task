@@ -18,18 +18,18 @@ const columns = [
     key: 'date',
     render: text => <span>{moment(text).format('YYYY-MM-DD')}</span>
   },
-  {
-    title: 'من => الى',
+  // {
+  //   title: 'من => الى',
 
-    key: 'to',
-    render: record => (
-      <div>
-        <div>{record.from && ` من : ${record.from}`}</div>
+  //   key: 'to',
+  //   render: record => (
+  //     <div>
+  //       <div>{record.from && ` من : ${record.from}`}</div>
 
-        <div>{record.to && ` الى : ${record.to}`}</div>
-      </div>
-    )
-  },
+  //       <div>{record.to && ` الى : ${record.to}`}</div>
+  //     </div>
+  //   )
+  // },
   {
     title: 'الزبون',
     key: 'clientName',
@@ -43,6 +43,11 @@ const columns = [
 
   {
     title: 'المصروف',
+    dataIndex: 'expenses[مصروف]',
+    key: 'expenses'
+  },
+  {
+    title: ' مصاريف اضافية',
     dataIndex: 'expenses',
     key: 'expenses',
     render: record => <Exponess exponess={record} />
@@ -83,9 +88,7 @@ const columns = [
     key: '_id',
     render: record => (
       <Fragment>
-        {record.totalBack +
-          record.totalTo -
-          Object.entries(record.expenses).reduce((a, b) => a + b[1], 0)}
+        {record.totalBack + record.totalTo - record.expenses['مصروف']}
       </Fragment>
     )
   },

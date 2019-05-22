@@ -12,7 +12,9 @@ const columns = [
     dataIndex: 'name',
     key: 'name',
     sorter: true,
-    render: (text, record) => <Link to={'/driver/' + record._id}>{text}</Link>
+    render: (text, record) => (
+      <Link to={'/info/driver/' + record._id}>{text}</Link>
+    )
   },
   {
     title: 'أرقام الهواتف',
@@ -56,6 +58,7 @@ const DriverTable = () => (
       return {
         onClick: event => {
           data.selectedDriver = record._id;
+          
         }
       };
     }}

@@ -34,6 +34,10 @@ const carSchema = new _mongoose.default.Schema({
   active: {
     type: Boolean,
     default: true
+  },
+  type: {
+    type: String,
+    default: ' '
   }
 });
 

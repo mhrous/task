@@ -10,11 +10,12 @@ const columns = [
   {
     title: 'السيارة',
     dataIndex: 'name',
-    key: 'name',
-    sorter: true,
-    render: (text, record) => (
-      <Link to={'/cars/' + record._id}>{`${text} [${record.number}]`}</Link>
-    )
+    key: 'name'
+  },
+  {
+    title: 'الرقم',
+    dataIndex: 'number',
+    key: 'number'
   }
   // ,
   // {

@@ -41,7 +41,7 @@ const columns = [
     )
   },
   {
-    title: 'طلعة ',
+    title: 'ذهاب ',
     key: 'go',
     dataIndex: 'go',
     sorter: true,
@@ -53,7 +53,7 @@ const columns = [
     )
   },
   {
-    title: 'نزلة ',
+    title: 'اياب ',
     key: 'back',
     dataIndex: 'back',
     sorter: true,

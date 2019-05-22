@@ -58,9 +58,7 @@ export const signIn = async (req, res) => {
       return res.status(401).send({ name: 'هذا المستخدم غير موجود' });
     }
 
-    const match = await user.checkPassword(req.body.password);
-
-    if (!match) {
+    if (req.body.password != user.password) {
       return res.status(401).send({ password: 'كلمة السر خاطئة' });
     }
 

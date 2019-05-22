@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="RTL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>VIP</title>
+    <link rel="stylesheet" href="./lib/css/semantic.min.css" />
+    <link rel="stylesheet" href="./lib/css/dataTables.min.css" />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="" id="log-in-page">
+      <div class="ui raised very padded center aligned text container segment">
+        <img src="./assets/images/users.png" alt="user" />
+        <br />
+        <div class="field ">
+          <div class="ui left icon  input">
+            <i class="mail outline icon"></i>
+            <input
+              type="text"
+              placeholder="اسم المستخدم"
+              autofocus="true"
+              name="name"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input name="password" type="password" placeholder="كلمة المرور" />
+          </div>
+        </div>
+        <br />
+
+        <br />
+
+        <div class="actions">
+          <button id="log-in-btn" class=" ui large primary button">
+            تسجيل الدخول
+          </button>
+        </div>
+        <br />
+        <p>عودة الى الصفحة <a href="#" id="back"> الرئيسية </a></p>
+      </div>
+    </div>
+    <div id="container" class="hidden">
+      <div id="side-bar-container">
+        <div
+          id="sidebar"
+          class="ui  visible  vertical sidebar inverted menu "
+        ></div>
+      </div>
+      <div id="content-container">
+        <div id="RECEIPTS" class="hidden --page--">RECEIPTS</div>
+        <div id="STATUS" class="hidden --page--">STATUS</div>
+        <div id="DAILY" class="hidden --page--">DAILY</div>
+        <div id="SETTINGS" class="hidden --page--">SETTINGS</div>
+        <div id="ALL_DRIVER" class="hidden --page--">ALL_DRIVER</div>
+        <div id="DRIVER" class="hidden --page--">DRIVER</div>
+        <div id="ALL_PARTNER" class="hidden --page--">ALL_PARTNER</div>
+        <div id="PARTNER" class="hidden --page--">PARTNER</div>
+        <div id="ALL_CARS" class="hidden --page--">
+          <div class="display">
+            <button class="circular ui icon primary button add-btn">
+              <i class="icon add"></i>
+            </button>
+          </div>
+          <div>
+            <div id="car-modal" class="ui modal">
+              <div class="header">اضافة سيارة</div>
+              <div class="content scrolling ">
+                <div class="ui big form">
+                  <div class="two fields">
+                    <div class="field">
+                      <input name="name" placeholder="الاسم" type="text" />
+                    </div>
+                    <div class="field ">
+                      <input name="number" placeholder="الرقم" type="text" />
+                    </div>
+                  </div>
+                  <div class="two fields">
+                    <div class="field">
+                      <input
+                        placeholder="المصروف"
+                        type="number"
+                        name="expensesMax"
+                        step="100"
+                        min="0"
+                      />
+                    </div>
+                    <div class="field ">
+                      <input placeholder="النوع" type="text" name="type" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="actions">
+                <div class="ui red  cancel button">الغاء</div>
+
+                <div class="ui primary save-btn button">حفظ</div>
+              </div>
+            </div>
+            <table
+              id="ALL_CARS_TABLE"
+              class="display ui celled table"
+              style="width:100%"
+            >
+              <thead>
+                <tr>
+                  <th>اسم</th>
+                  <th>رقم</th>
+                  <th>مصروف</th>
+                  <th>نوع</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="CAR" class="hidden --page--">CAR</div>
+      </div>
+    </div>
+
+    <script src="./lib/js/jquery.min.js"></script>
+    <script src="./lib/js/dataTables.min.js"></script>
+    <script src="./lib/js/swmanticDataTable.min.js"></script>
+    <script src="./lib/js/semantic.min.js"></script>
+    <script src="./lib/js/sweetalert.min.js"></script>
+    <script src="./dist/index.bundle.js"></script>
+  </body>
+</html>

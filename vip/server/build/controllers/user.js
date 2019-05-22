@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateMe = exports.me = void 0;
+exports.updateUser = exports.me = void 0;
 
 var _model = require("../model");
 
@@ -15,7 +15,7 @@ const me = (req, res) => {
 
 exports.me = me;
 
-const updateMe = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
     const user = await _model.User.findByIdAndUpdate(req.user._id, req.body, {
       new: true
@@ -28,4 +28,4 @@ const updateMe = async (req, res) => {
   }
 };
 
-exports.updateMe = updateMe;
+exports.updateUser = updateUser;

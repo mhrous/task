@@ -87,6 +87,30 @@ Object.defineProperty(exports, "updateStatus", {
     return _status.updateStatus;
   }
 });
+Object.defineProperty(exports, "addPayment", {
+  enumerable: true,
+  get: function () {
+    return _payments.addPayment;
+  }
+});
+Object.defineProperty(exports, "deletePayment", {
+  enumerable: true,
+  get: function () {
+    return _payments.deletePayment;
+  }
+});
+Object.defineProperty(exports, "putPayment", {
+  enumerable: true,
+  get: function () {
+    return _payments.putPayment;
+  }
+});
+Object.defineProperty(exports, "getAllPaymentForDriverInMonth", {
+  enumerable: true,
+  get: function () {
+    return _payments.getAllPaymentForDriverInMonth;
+  }
+});
 Object.defineProperty(exports, "getAllTravelForCarInMonth", {
   enumerable: true,
   get: function () {
@@ -123,6 +147,12 @@ Object.defineProperty(exports, "getAllTravelForDriverInMonth", {
     return _travel.getAllTravelForDriverInMonth;
   }
 });
+Object.defineProperty(exports, "updateUser", {
+  enumerable: true,
+  get: function () {
+    return _user.updateUser;
+  }
+});
 
 var _driver = require("./driver");
 
@@ -132,4 +162,8 @@ var _car = require("./car");
 
 var _status = require("./status");
 
+var _payments = require("./payments");
+
 var _travel = require("./travel");
+
+var _user = require("./user");

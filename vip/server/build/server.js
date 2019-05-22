@@ -24,6 +24,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const app = (0, _express.default)();
 exports.app = app;
 app.disable('x-powered-by');
+app.disable('etag');
 app.use((0, _cors.default)());
 app.use((0, _bodyParser.json)());
 app.use((0, _bodyParser.urlencoded)({

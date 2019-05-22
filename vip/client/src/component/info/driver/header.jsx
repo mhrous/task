@@ -14,7 +14,6 @@ const Header = () => (
         <br />
         {` السيارة : ${data.driver.car.name} (${data.driver.car.number})`}
         <br />
-        {` متبقي : ${data.driver.rest} .ل س`}
       </div>
     }
     extra={

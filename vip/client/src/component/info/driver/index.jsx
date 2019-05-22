@@ -6,6 +6,7 @@ import data from './data';
 import Header from './header';
 import Travels from './travel';
 import Receipt from './receipt';
+import Expenses from './expenses';
 import Footer from './footer';
 
 const TabPane = Tabs.TabPane;
@@ -25,7 +26,11 @@ const Page = ({ id }) => {
           <Header />
           <Receipt />
         </TabPane>
-        <TabPane tab="دفعات" key="3">
+        <TabPane tab="مصاريف اضافية" key="3">
+          <Header />
+          <Expenses />
+        </TabPane>
+        <TabPane tab="دفعات" key="4">
           <Header />
           Content of Tab Pane 3
         </TabPane>
