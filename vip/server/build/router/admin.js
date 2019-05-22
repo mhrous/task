@@ -22,7 +22,7 @@ router.post('/admin/driver', _controllers.addNewDriver);
 router.post('/admain/payment', _controllers.addPayment);
 router.delete('/admain/payment/:id', _controllers.deletePayment);
 router.put('/admain/payment/:id', _controllers.putPayment);
-router.post('/admain/payment/driver/:driverId/:month/:year', _controllers.getAllPaymentForDriverInMonth);
+router.get('/admain/payment/driver/:driverId/:month/:year', _controllers.getAllPaymentForDriverInMonth);
 router.get('/admin/travel/car/:carId/:month/:year', _controllers.getAllTravelForCarInMonth);
 router.get('/admin/travel/driver/:driverId/:month/:year', _controllers.getAllTravelForDriverInMonth);
 var _default = router;

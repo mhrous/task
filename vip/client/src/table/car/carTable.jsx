@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, Button, Icon } from 'antd';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
 
 import { Notes } from '../../component';
 import data from './data';

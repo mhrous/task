@@ -101,6 +101,7 @@ class Data {
     });
     return res;
   }
+
   @computed get receiptValue() {
     return this.receipt.reduce((a, b) => a + b.total, 0);
   }

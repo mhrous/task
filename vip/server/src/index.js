@@ -1,5 +1,3 @@
-import {
-  start
-} from './server';
-
+import { start } from './server';
+console.log(start);
 start();

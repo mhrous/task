@@ -15,6 +15,7 @@ import {
   deletePayment,
   putPayment,
   getAllPaymentForDriverInMonth
+
 } from '../controllers';
 
 const router = Router();
@@ -32,10 +33,11 @@ router.get('/admin/driver', getALLDriver);
 router.get('/admin/driver/:id', getDriver);
 router.post('/admin/driver', addNewDriver);
 
+
 router.post('/admain/payment', addPayment);
 router.delete('/admain/payment/:id', deletePayment);
 router.put('/admain/payment/:id', putPayment);
-router.post(
+router.get(
   '/admain/payment/driver/:driverId/:month/:year',
   getAllPaymentForDriverInMonth
 );

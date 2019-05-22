@@ -25,6 +25,7 @@ app.use('/vip', vipRouter);
 export const start = async () => {
   try {
     await connect();
+    
     app.listen(config.port, () => {
       console.log(`REST API on http://localhost:${config.port}/vip`);
     });

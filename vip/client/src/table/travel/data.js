@@ -41,7 +41,7 @@ class Data {
   @observable notes = [''];
   @observable expenses = [['مصروف', '', '']];
 
-  //
+
   @observable allPartnerNames = [];
   @observable driverCar = [];
   fromToOption = ['دمشق', 'بيروت', 'مطار بيروت', 'مطار دمشق'];
@@ -69,6 +69,7 @@ class Data {
     this.notes = [''];
     this.date = new Date();
     this.expenses = [['مصروف', '', '']];
+
   }
 
   @action

@@ -1,4 +1,5 @@
-import { observable, action, toJS } from 'mobx';
+
+import { observable, action } from 'mobx';
 import { message } from 'antd';
 import { postJSON } from '../../lib';
 import { API_URL } from '../../config';
